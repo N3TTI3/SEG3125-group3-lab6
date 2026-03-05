@@ -16,6 +16,4 @@ app.use(express.static('./public'));
 // fire function from surveyController
 surveyController(app);
 
-// listen to port
-app.listen(3000);
-console.log('listening port 3000');
+module.exports = app; 

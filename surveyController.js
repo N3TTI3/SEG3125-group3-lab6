@@ -6,6 +6,10 @@ const { ArrayCamera } = require('three');
 
 // read the data file
 function readData(fileName){
+    const filepath ='./data/' +fileName +'.json';
+    if (!fs.existsSync(filepath)){
+        fs.writeFileSync(filepath, '[]');
+    }
     let dataRead = fs.readFileSync('./data/' + fileName + '.json');
     let infoRead = JSON.parse(dataRead);
     return infoRead;

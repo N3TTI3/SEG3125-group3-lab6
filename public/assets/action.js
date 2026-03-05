@@ -16,6 +16,7 @@ $(document).ready(function(){
           $("#submitBtn").css("background-color", "red");
           $("#submitBtn").prop("disabled", "true");
           $("#submitBtn").text("Thank you!");
+          window.location.href= "/analysis";
         }
       });
       return false;
