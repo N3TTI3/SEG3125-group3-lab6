@@ -2,6 +2,7 @@
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({extended: false});
 var fs = require('fs');
+const { ArrayCamera } = require('three');
 
 // read the data file
 function readData(fileName){
@@ -42,11 +43,13 @@ module.exports = function(app){
     // when a user goes to localhost:3000/analysis
     // serve a template (ejs file) which will include the data from the data files
     app.get('/analysis', function(req, res){
-        var color = readData("color");
-        var fruit = readData("fruit");
-        var animal = readData("animal");
-        res.render('showResults', {results: [color, fruit, animal]});
-        console.log([color, fruit, animal]);
+        var improve = readData("question2_improve");
+        var signin = readData("question3_rate");
+        var well = readData("question4_well");
+        var cart = readData("question5_cart");
+        
+        res.render('showResults', {results: [improve, signin, well, cart]});
+        console.log([improve, signin, well, cart]);
     });
 
     // when a user goes to localhost:3000/niceSurvey
@@ -61,10 +64,19 @@ module.exports = function(app){
     app.post('/niceSurvey', urlencodedParser, function(req, res){
         console.log(req.body);
         var json = req.body;
+        const countableKeys = new Set([
+          "question2_improve",   
+          "question3_rate",      
+          "question4_well",      
+          "question5_cart"       
+        ]);
         for (var key in json){
             console.log(key + ": " + json[key]);
             // in the case of checkboxes, the user might check more than one
-            if ((key === "color") && (json[key].length === 2)){
+            // skip text inputs 
+            if (!countableKeys.has(key)) continue;
+
+            if (Array.isArray(json[key])){
                 for (var item in json[key]){
                     combineCounts(key, json[key][item]);
                 }

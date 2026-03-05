@@ -4,24 +4,29 @@
 </head>
 
 <body>
-    <h1>Survey analysis</h1>
-    <h2>Colors</h2>
+    <h1>Amazon Survey analysis</h1>
+    <h2>Parts to be improved</h2>
     <ul>
     <% for (var i=0; i<results[0].length; i++){ %>
-        <li><%= results[0][i].color %> :  <%= results[0][i].count %></li>
+        <li><%= results[0][i].question2_improve %> :  <%= results[0][i].count %></li>
     <% } %>    
     </ul>
-    <h2>Fruits</h2>
+    <h2>Sing-in Page Rating</h2>
     <ul>
     <% for (var i=0; i<results[1].length; i++){ %>
-        <li><%= results[1][i].fruit %> :  <%= results[1][i].count %></li>
+        <li><%= results[1][i].question3_rate %> :  <%= results[1][i].count %></li>
     <% } %>    
     </ul>
-    <h2>Animals</h2>
+    <h2>What the website did well</h2>
     <ul>
     <% for (var i=0; i<results[2].length; i++){ %>
-        <li><%= results[2][i].animal %> :  <%= results[2][i].count %></li>
-    <% } %>    
+        <li><%= results[2][i].question4_well %> :  <%= results[2][i].count %></li>
+    <% } %>  
+    <h2>Shopping Cart Rating</h2>
+    <ul>
+    <% for (var i=0; i<results[3].length; i++){ %>
+        <li>Rating <%= results[3][i].question5_cart %> : <%= results[3][i].count %></li>
+    <% } %>  
     </ul>
 </body>
 </html>

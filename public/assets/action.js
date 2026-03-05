@@ -13,9 +13,9 @@ $(document).ready(function(){
         success: function(data){
           // do something with the data via front-end framework
           // Make the submit button red, disabled and saying Thank you
-          $("#bb").css("background-color", "red");
-          $("#bb").prop("disabled", "true");
-          $("#bb").text("Thank you!");
+          $("#submitBtn").css("background-color", "red");
+          $("#submitBtn").prop("disabled", "true");
+          $("#submitBtn").text("Thank you!");
         }
       });
       return false;

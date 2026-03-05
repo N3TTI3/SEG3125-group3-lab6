@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Questionnaire</title>
+    <title>Amazon Survey</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Style sheet (CSS) and JavaScript scripts necessary to use Bootstrap -->
@@ -8,39 +8,163 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>    
+    <link rel="stylesheet" href ="/assets/style.css">
 
     <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+     
   </head>
   
-  <body>
-	
-	<div class="container-md p-3 my-3 border bg-dark text-white" id="survey">
-    <h1>Survey</h1>
-    <form>
-      <h2> What fruits(s) do you like? </h2>
-      I like:<br>
-      <input type="text" name="fruit" placeholder="fruit name..." required />
-      <br>
-      <br>
-      <h2> What color(s) do you like? </h2>
-	    I like:<br>
-		  <input type="checkbox" name="color" value="Red"> Red<br>
-		  <input type="checkbox" name="color" value="Green"> Green<br>
-      <input type="checkbox" name="color" value="Blue"> Blue<br>
-      <br>
-      <h2>What is your favorite animal?</h2>
-      I like:<br>
-      <select name="animal">
-			  <option value="Cat" selected="selected">Cat</option>
-			  <option value="Dog">Dog</option>
-			  <option value="Turtle">Turtle</option>
-      </select>
-      <br>
-      <br>
-      <button type="submit" class="btn btn-warning" id="bb">Submit</button>
-      <p id="thanks"></p>
-    </form>
+  <body class="page">
+    <header class="page-header">
+      <div class ="logo">
+      <a href="https://www.amazon.ca"><img src="/assets/img/logo.png" alt="Amazon logo" class="amazon-logo"/></a>
+      <h1 class="page-title">Amazon Experience Survey</h1>
+      </div>
+    </header>
+
+    <main class="page-main">
+      <div id="example" class="example">
+        <p>Your opinion matters. Your feedback helps to improve your experience!</p> 
+
+         <!-- Link section -->
+        <div id="link-section" class="link-section">
+          Visit <a href="https://www.amazon.ca" class="external-link"> Amazon.ca </a> <br> <br>
+        </div>
+
+          <!--image section-->
+        <div class="images">
+          <img src="/assets/img/amazon.png" alt="Amazon front-page" class="amazon-image zoomable"/>
+          <img src ="/assets/img/cart.png" alt="cart page" class ="cart">
+          <img src ="/assets/img/sign-in.png" alt ="sign in page" class="sign-in"/>
+        </div>
+      
+      <p class="hint"> <b>Click the image to zoom in </b></p>   
+      </div>   
+  
+
+      <div id="form" class="form">
+        <p> Please answer the following questions: </p>
+
+        <form id ="surveyForm">
+        <!-- Q 1 -->
+        <div id="form1" class="section section-form">
+          <div class="form form-text">
+            <label for="first1" class="form-label">
+              If you were to change anything about this website, what would it be?
+            </label>
+            <br /> <br>
+             <textarea id="first1" name="question1_suggestion"class="form-input" rows ="5" cols="40" placeholder="Your suggestion..."></textarea>
+           </div>
+        </div>
+
+        <br>
+
+        <!-- Q 2 -->
+        <div id="form2" class="section section-form">
+          <div class="form form-radio">
+            <label class="form-label">
+              What parts of this site need improving upon?
+            </label>
+            <br>
+            <input type="checkbox" id="q2_visual" name="question2_improve" value="Visual">
+            <label for="q2_visual"> Visual </label><br>
+            <input type="checkbox" id="q2_layout" name="question2_improve" value="Layout">
+            <label for="q2_layout"> Layout </label><br>
+            <input type="checkbox" id="q2_functionality" name="question2_improve" value="Functionality">
+            <label for="q2_functionality"> Functionality</label> <br>
+            <input type="checkbox" id="q2_accessibility" name="question2_improve" value="Accessibility">
+            <label for="q2_accessibility"> Accessibility</label> 
+          </div>
+        </div>
+
+        <br>
+
+        <!-- Q 3 -->
+        <div id="form3" class="section section-form">
+          <div class="form form-select">
+            <label for="signInRate" class ="form-label">
+            Sign In Page: How easy is it to sign in and to create a new account? <br>(1: Easy, 5: Confusing)
+          </label>
+          <br>
+          <select id="signInRate" name="question3_rate" class="form-select-input">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>  
+          </div>
+        </div>
+
+        <br>
+
+        <!-- Q 4 -->
+        <div id="form4" class="section section-form">
+          <div class="form form-radio">
+            <label class="form-label">
+              What did this website do well?
+            </label>
+            <br>
+            <input type="checkbox" id="q4_visual" name="question4_well" value="Visual">
+            <label for="q4_visual"> Visual </label><br>
+            <input type="checkbox" id="q4_layout" name="question4_well" value="Layout">
+            <label for="q4_layout"> Layout </label><br>
+            <input type="checkbox" id="q4_functionality" name="question4_well" value="Functionality">
+            <label for="q4_functionality"> Functionality</label> <br>
+            <input type="checkbox" id="q4_accessibility" name="question4_well" value="Accessibility">
+            <label for="q4_accessibility"> Accessibility</label> 
+          </div>
+        </div>
+        <br>
+
+        <!-- Q 5 -->
+        <div id="form5" class="section section-form">
+          <div class="form form-select">
+            <label for="cartRate" class ="form-label">
+            Shopping Cart: How easy is it to review items in the Shopping Cart page? <br>(1: Easy, 5: Confusing) 
+          </label>
+          <br>
+          <select id="cartRate" name="question5_cart" class="form-select-input">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>  
+          </div>
+        </div>
+        <br>
+
+        <!-- Form 6 -->
+        <div id="form6" class="section section-form">
+          <div class="form form-text">
+            <label for="first6" class="form-label">
+              Final comments?
+            </label>
+            <br />
+            <textarea id = "first6" class = "form-input" name ="question6_comments" rows ="5"
+            cols = "30" placeholder="Write your comments here..."></textarea>
+          </div>
+        </div>
+
+        <br>
+
+        <!-- Submit -->
+        <div id="submit-section" class="section section-submit">
+          <button type="submit" class = "btn" id="submitBtn"> Submit</button>
+          <p id="thanks"></p>
+        </div>
+
+      </form>
     </div>
-	<script src="/assets/action.js"></script>
+  </main>
+
+    <!-- Signature -->
+     <div id="signature-section" class="signature-section">
+      Website designed by Kate Boyd, Jessy Helaleh, Onur Onel
+      <br>
+      Group 3
+     </div>
+     <script src="/assets/action.js"></script>
   </body>
-</html> 
+</html>
