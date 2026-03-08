@@ -1,0 +1,32 @@
+[
+  {
+    "question2_improve": "Visual",
+    "question3_rate": "4",
+    "question4_well": "Functionality",
+    "question5_cart": "3"
+  },
+  {
+    "question2_improve": "Visual",
+    "question3_rate": "2",
+    "question4_well": "Accessibility",
+    "question5_cart": "3"
+  },
+  {
+    "question2_improve": "Functionality",
+    "question3_rate": "4",
+    "question4_well": "Layout",
+    "question5_cart": "3"
+  },
+  {
+    "question2_improve": [
+      "Visual",
+      "Accessibility"
+    ],
+    "question3_rate": "3",
+    "question4_well": [
+      "Visual",
+      "Layout"
+    ],
+    "question5_cart": "5"
+  }
+]

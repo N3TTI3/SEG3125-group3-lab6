@@ -1,1 +1,22 @@
-[{"question3_rate":"1","count":1},{"question3_rate":"2","count":2},{"question3_rate":"3","count":2},{"question3_rate":"4","count":0},{"question3_rate":"5","count":0}]
+[
+  {
+    "question3_rate": "1",
+    "count": 1
+  },
+  {
+    "question3_rate": "2",
+    "count": 6
+  },
+  {
+    "question3_rate": "3",
+    "count": 5
+  },
+  {
+    "question3_rate": "4",
+    "count": 3
+  },
+  {
+    "question3_rate": "5",
+    "count": 1
+  }
+]

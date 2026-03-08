@@ -35,6 +35,31 @@ http://localhost:3000/niceSurvey
     also, To view the survey results, open:
     http://localhost:3000/analysis
 
+## REST API Endpoints
+
+Get all survey responses:
+
+7.GET /api/survey
+
+Get aggregated survey results:
+
+8.GET /api/survey/results
+
+Submit survey responses:
+
+9.POST /api/survey
+
+## Data storage
+
+Survey responses are stored in JSON files located in the `data` folder.  
+These files are updated automatically when users submit the survey.
+the files:
+question2_improve.json
+question3_rate.json
+question4_well.json
+question5_cart.json
+
+
 ## Project structure
 .
 ├── app.js
@@ -592,15 +617,7 @@ http://localhost:3000/niceSurvey
     ├── niceSurvey.html
     └── showResults.ejs
     
-## Data storage
 
-Survey responses are stored in JSON files located in the `data` folder.  
-These files are updated automatically when users submit the survey.
-the files:
-question2_improve.json
-question3_rate.json
-question4_well.json
-question5_cart.json
 
 we used : 
 - Node.js

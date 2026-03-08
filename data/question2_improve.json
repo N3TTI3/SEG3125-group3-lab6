@@ -1,1 +1,18 @@
-[{"question2_improve":"Visual","count":3},{"question2_improve":"Layout","count":0},{"question2_improve":"Functionality","count":0},{"question2_improve":"Accessibility","count":1}]
+[
+  {
+    "question2_improve": "Visual",
+    "count": 7
+  },
+  {
+    "question2_improve": "Layout",
+    "count": 2
+  },
+  {
+    "question2_improve": "Functionality",
+    "count": 5
+  },
+  {
+    "question2_improve": "Accessibility",
+    "count": 3
+  }
+]

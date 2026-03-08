@@ -46,112 +46,120 @@
         <p> Please answer the following questions: </p>
 
         <form id ="surveyForm">
-        <!-- Q 1 -->
-        <div id="form1" class="section section-form">
-          <div class="form form-text">
-            <label for="first1" class="form-label">
-              If you were to change anything about this website, what would it be?
-            </label>
-            <br /> <br>
-             <textarea id="first1" name="question1_suggestion"class="form-input" rows ="5" cols="40" placeholder="Your suggestion..."></textarea>
-           </div>
+        <!-- Page 1 Q1 + Q2 -->
+        <div class="survey-page" data-page="0">
+          <!-- Q 1 -->
+          <div id="form1" class="section section-form">
+            <div class="form form-text">
+              <label for="first1" class="form-label">
+                If you were to change anything about this website, what would it be?
+              </label>
+              <br /> <br>
+               <textarea id="first1" name="question1_suggestion"class="form-input" rows ="5" cols="40" placeholder="Your suggestion..."></textarea>
+             </div>
+          </div>
+
+          <br>
+
+          <!-- Q 2 -->
+          <div id="form2" class="section section-form">
+            <div class="form form-radio">
+              <label class="form-label">
+                What parts of this site need improving upon?
+              </label>
+              <br>
+              <input type="checkbox" id="q2_visual" name="question2_improve" value="Visual">
+              <label for="q2_visual"> Visual </label><br>
+              <input type="checkbox" id="q2_layout" name="question2_improve" value="Layout">
+              <label for="q2_layout"> Layout </label><br>
+              <input type="checkbox" id="q2_functionality" name="question2_improve" value="Functionality">
+              <label for="q2_functionality"> Functionality</label> <br>
+              <input type="checkbox" id="q2_accessibility" name="question2_improve" value="Accessibility">
+              <label for="q2_accessibility"> Accessibility</label> 
+            </div>
+          </div>
         </div>
 
-        <br>
-
-        <!-- Q 2 -->
-        <div id="form2" class="section section-form">
-          <div class="form form-radio">
-            <label class="form-label">
-              What parts of this site need improving upon?
+        <!-- Page 2 Q3 + Q4 -->
+        <div class="survey-page" data-page="1" style="display:none;">
+          <!-- Q 3 -->
+          <div id="form3" class="section section-form">
+            <div class="form form-select">
+              <label for="signInRate" class ="form-label">
+              Sign In Page: How easy is it to sign in and to create a new account? <br>(1: Easy, 5: Confusing)
             </label>
             <br>
-            <input type="checkbox" id="q2_visual" name="question2_improve" value="Visual">
-            <label for="q2_visual"> Visual </label><br>
-            <input type="checkbox" id="q2_layout" name="question2_improve" value="Layout">
-            <label for="q2_layout"> Layout </label><br>
-            <input type="checkbox" id="q2_functionality" name="question2_improve" value="Functionality">
-            <label for="q2_functionality"> Functionality</label> <br>
-            <input type="checkbox" id="q2_accessibility" name="question2_improve" value="Accessibility">
-            <label for="q2_accessibility"> Accessibility</label> 
+            <select id="signInRate" name="question3_rate" class="form-select-input">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>  
+            </div>
           </div>
-        </div>
 
-        <br>
-
-        <!-- Q 3 -->
-        <div id="form3" class="section section-form">
-          <div class="form form-select">
-            <label for="signInRate" class ="form-label">
-            Sign In Page: How easy is it to sign in and to create a new account? <br>(1: Easy, 5: Confusing)
-          </label>
           <br>
-          <select id="signInRate" name="question3_rate" class="form-select-input">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>  
+
+          <!-- Q 4 -->
+          <div id="form4" class="section section-form">
+            <div class="form form-radio">
+              <label class="form-label">
+                What did this website do well?
+              </label>
+              <br>
+              <input type="checkbox" id="q4_visual" name="question4_well" value="Visual">
+              <label for="q4_visual"> Visual </label><br>
+              <input type="checkbox" id="q4_layout" name="question4_well" value="Layout">
+              <label for="q4_layout"> Layout </label><br>
+              <input type="checkbox" id="q4_functionality" name="question4_well" value="Functionality">
+              <label for="q4_functionality"> Functionality</label> <br>
+              <input type="checkbox" id="q4_accessibility" name="question4_well" value="Accessibility">
+              <label for="q4_accessibility"> Accessibility</label> 
+            </div>
           </div>
         </div>
 
-        <br>
-
-        <!-- Q 4 -->
-        <div id="form4" class="section section-form">
-          <div class="form form-radio">
-            <label class="form-label">
-              What did this website do well?
+        <!-- Page 3 Q5 + Q6 -->
+        <div class="survey-page" data-page="2" style="display:none;">
+          <!-- Q 5 -->
+          <div id="form5" class="section section-form">
+            <div class="form form-select">
+              <label for="cartRate" class ="form-label">
+              Shopping Cart: How easy is it to review items in the Shopping Cart page? <br>(1: Easy, 5: Confusing) 
             </label>
             <br>
-            <input type="checkbox" id="q4_visual" name="question4_well" value="Visual">
-            <label for="q4_visual"> Visual </label><br>
-            <input type="checkbox" id="q4_layout" name="question4_well" value="Layout">
-            <label for="q4_layout"> Layout </label><br>
-            <input type="checkbox" id="q4_functionality" name="question4_well" value="Functionality">
-            <label for="q4_functionality"> Functionality</label> <br>
-            <input type="checkbox" id="q4_accessibility" name="question4_well" value="Accessibility">
-            <label for="q4_accessibility"> Accessibility</label> 
+            <select id="cartRate" name="question5_cart" class="form-select-input">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>  
+            </div>
           </div>
-        </div>
-        <br>
-
-        <!-- Q 5 -->
-        <div id="form5" class="section section-form">
-          <div class="form form-select">
-            <label for="cartRate" class ="form-label">
-            Shopping Cart: How easy is it to review items in the Shopping Cart page? <br>(1: Easy, 5: Confusing) 
-          </label>
           <br>
-          <select id="cartRate" name="question5_cart" class="form-select-input">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>  
-          </div>
-        </div>
-        <br>
 
-        <!-- Form 6 -->
-        <div id="form6" class="section section-form">
-          <div class="form form-text">
-            <label for="first6" class="form-label">
-              Final comments?
-            </label>
-            <br />
-            <textarea id = "first6" class = "form-input" name ="question6_comments" rows ="5"
-            cols = "30" placeholder="Write your comments here..."></textarea>
+          <!-- Form 6 -->
+          <div id="form6" class="section section-form">
+            <div class="form form-text">
+              <label for="first6" class="form-label">
+                Final comments?
+              </label>
+              <br />
+              <textarea id = "first6" class = "form-input" name ="question6_comments" rows ="5"
+              cols = "30" placeholder="Write your comments here..."></textarea>
+            </div>
           </div>
         </div>
 
         <br>
 
-        <!-- Submit -->
+        <!-- Navigation -->
         <div id="submit-section" class="section section-submit">
-          <button type="submit" class = "btn" id="submitBtn"> Submit</button>
+          <button type="button" class="btn btn-back" id="backBtn" style="display:none;">Back</button>
+          <button type="button" class="btn btn-next" id="nextBtn">Next</button>
+          <button type="submit" class="btn btn-submit" id="submitBtn" style="display:none;"> Submit</button>
           <p id="thanks"></p>
         </div>
 

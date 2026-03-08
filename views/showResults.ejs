@@ -1,32 +1,219 @@
+<!doctype html>
 <html lang="en-US">
 <head>
-    <title>Survey Analysis</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Survey Analysis</title>
+
+  <!-- Bootstrap for layout + simple styling -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/style.css">
+
+  <!-- Chart.js CDN in the head (requirement #5) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    /* Simple card-like styling for charts (requirement #7) */
+    .chart-card {
+      height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      background: #fff;
+    }
+    .chart-card canvas {
+      width: 100% !important;
+      height: 220px !important;
+    }
+    body { background: #f4f6f8; }
+  </style>
 </head>
 
-<body>
-    <h1>Amazon Survey analysis</h1>
-    <h2>Parts to be improved</h2>
-    <ul>
-    <% for (var i=0; i<results[0].length; i++){ %>
-        <li><%= results[0][i].question2_improve %> :  <%= results[0][i].count %></li>
-    <% } %>    
-    </ul>
-    <h2>Sing-in Page Rating</h2>
-    <ul>
-    <% for (var i=0; i<results[1].length; i++){ %>
-        <li><%= results[1][i].question3_rate %> :  <%= results[1][i].count %></li>
-    <% } %>    
-    </ul>
-    <h2>What the website did well</h2>
-    <ul>
-    <% for (var i=0; i<results[2].length; i++){ %>
-        <li><%= results[2][i].question4_well %> :  <%= results[2][i].count %></li>
-    <% } %>  
-    <h2>Shopping Cart Rating</h2>
-    <ul>
-    <% for (var i=0; i<results[3].length; i++){ %>
-        <li>Rating <%= results[3][i].question5_cart %> : <%= results[3][i].count %></li>
-    <% } %>  
-    </ul>
+<body class="p-4">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1>Amazon Survey Analysis</h1>
+      <a class="btn btn-secondary" href="/niceSurvey">Take Survey</a>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-4">
+        <div class="chart-card">
+          <h5 class="mb-2">Parts to be Improved</h5>
+          <canvas id="chartImprove"></canvas>
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-4">
+        <div class="chart-card">
+          <h5 class="mb-2">Sign-in Page Rating</h5>
+          <canvas id="chartSignin"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-4">
+        <div class="chart-card">
+          <h5 class="mb-2">What the Website Did Well</h5>
+          <canvas id="chartWell"></canvas>
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-4">
+        <div class="chart-card">
+          <h5 class="mb-2">Shopping Cart Rating</h5>
+          <canvas id="chartCart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Keep original EJS loops that display the text results (requirement #4 & #6) -->
+    <div class="mt-4">
+      <h4>Raw counts</h4>
+
+      <div class="row">
+        <div class="col-md-6">
+          <h5>Parts to be improved</h5>
+          <ul>
+            <% for (var i=0; i<results[0].length; i++){ %>
+              <li><%= results[0][i].question2_improve %> :  <%= results[0][i].count %></li>
+            <% } %>
+          </ul>
+        </div>
+
+        <div class="col-md-6">
+          <h5>What the website did well</h5>
+          <ul>
+            <% for (var i=0; i<results[2].length; i++){ %>
+              <li><%= results[2][i].question4_well %> :  <%= results[2][i].count %></li>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-md-6">
+          <h5>Sign-in Page Rating</h5>
+          <ul>
+            <% for (var i=0; i<results[1].length; i++){ %>
+              <li><%= results[1][i].question3_rate %> :  <%= results[1][i].count %></li>
+            <% } %>
+          </ul>
+        </div>
+
+        <div class="col-md-6">
+          <h5>Shopping Cart Rating</h5>
+          <ul>
+            <% for (var i=0; i<results[3].length; i++){ %>
+              <li>Rating <%= results[3][i].question5_cart %> : <%= results[3][i].count %></li>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Convert EJS results into JS arrays for Chart.js (requirement #6).
+    // Use unescaped JSON so arrays are native JS objects.
+    var improve = <%- JSON.stringify(results[0] || []) %>;
+    var signin = <%- JSON.stringify(results[1] || []) %>;
+    var well = <%- JSON.stringify(results[2] || []) %>;
+    var cart = <%- JSON.stringify(results[3] || []) %>;
+
+    // Helper to extract labels and counts from server arrays
+    function extract(arr){
+      if (!arr || !arr.length) return { labels: [], counts: [] };
+      // find the first non-count key (e.g. 'question2_improve', 'question3_rate', ...)
+      var key = Object.keys(arr[0]).find(k => k !== 'count');
+      var labels = arr.map(function(o){ return o[key]; });
+      var counts = arr.map(function(o){ return Number(o.count || 0); });
+      return { labels: labels, counts: counts };
+    }
+
+    // Chart creation helpers
+    function makeBar(canvasId, dataObj, title){
+      var ctx = document.getElementById(canvasId).getContext('2d');
+      return new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: dataObj.labels,
+          datasets: [{
+             label: title,
+             data: dataObj.counts,
+             backgroundColor: [
+               '#1976d2',
+               '#4caf50',
+               '#ff9800',
+               '#e53935',
+               '#8e24aa',
+               '#00acc1'
+          ],
+             borderRadius: 4
+       }]
+ 
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: { beginAtZero: true, ticks: { precision: 0 } }
+          },
+          plugins: {
+            legend: { display: false }
+          }
+        }
+      });
+    }
+
+    function makePie(canvasId, dataObj){
+      var ctx = document.getElementById(canvasId).getContext('2d');
+      return new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: dataObj.labels,
+          datasets: [{
+            data: dataObj.counts,
+            backgroundColor: [
+              '#1976d2', '#4caf50', '#ffca28', '#e53935', '#8e24aa', '#00acc1'
+            ]
+          }]
+        },
+        options: { responsive: true, maintainAspectRatio: false }
+      });
+    }
+
+    function makeDoughnut(canvasId, dataObj){
+      var ctx = document.getElementById(canvasId).getContext('2d');
+      return new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: dataObj.labels,
+          datasets: [{
+            data: dataObj.counts,
+            backgroundColor: [
+              '#1976d2', '#4caf50', '#ffca28', '#e53935', '#8e24aa', '#00acc1'
+            ]
+          }]
+        },
+        options: { responsive: true, maintainAspectRatio: false }
+      });
+    }
+
+    // Prepare data and render charts (requirement #2 & #3)
+    var dImprove = extract(improve);
+    var dSignin = extract(signin);
+    var dWell = extract(well);
+    var dCart = extract(cart);
+
+    if (dImprove.labels.length) makeBar('chartImprove', dImprove, 'Parts to Improve');
+    if (dSignin.labels.length) makePie('chartSignin', dSignin);
+    if (dWell.labels.length) makeBar('chartWell', dWell, 'What Went Well');
+    if (dCart.labels.length) makeDoughnut('chartCart', dCart);
+  </script>
 </body>
 </html>

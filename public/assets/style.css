@@ -128,9 +128,30 @@ h1{
     border-radius: 8px;
     padding: 10px 20px;
     color:black;
-    
-
+    background-color: #f0f0f0;
 }
-button:hover {
-    background-color:rgb(216, 101, 101);
+
+/* Next / Back buttons */
+.btn-next, .btn-back{
+    background-color: #1976d2;
+    color: #fff;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 18px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    margin: 0 8px;
+}
+.btn-next:hover, .btn-back:hover{
+    background-color: #115293;
+}
+
+/* Submit button */
+.btn-submit{
+    background-color: #f0f0f0;
+    color: #000;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+.btn-submit:hover{
+    background-color: #d47b7b;
 }
